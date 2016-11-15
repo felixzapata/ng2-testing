@@ -1,5 +1,6 @@
-import { Http } from '@angular/http';
+import { UserSearchService } from './user-search/user-search.service';
 import { Component } from '@angular/core';
+import { IUser } from './model/user';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  user: any
+  user: IUser;
 
-  constructor(private http:Http){}
+  error: string;
+
+  constructor(private service:UserSearchService){}
   
   search(username: string): void {
-    this.http.get(`https://api.github.com/users/${username}`)
+    this.service.search(username)
     .subscribe(
-      (response) => this.user = response.json(),
-      (error) => console.log(error)
+      (user) => {
+        console.log(user);
+        this.user = user
+      },
+      (error) => {
+        console.log(error);
+        this.error = error;
+      }
     )
   }
 

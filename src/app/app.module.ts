@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { UserSearchService } from './user-search/user-search.service';
+import { GithubProxyService } from './proxies/github-proxy.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [UserSearchService, GithubProxyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

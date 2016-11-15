@@ -1,6 +1,7 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, ElementFinder } from 'protractor';
 
 export class UserSearchPO {
+
     navigateTo() {
         return browser.get('/');
     }
@@ -9,11 +10,15 @@ export class UserSearchPO {
         element(by.css('#username')).sendKeys(username);
     }
 
-    getButton() {
+    getButton(): ElementFinder {
         return element(by.css('#search'));
     }
 
     getLogin() {
         return element(by.css('#login')).getText();
+    }
+
+    getError() {
+        return element(by.css('#error')).isElementPresent;
     }
 }

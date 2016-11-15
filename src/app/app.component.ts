@@ -13,20 +13,20 @@ export class AppComponent {
 
   error: string;
 
-  constructor(private service:UserSearchService){}
-  
+  constructor(private service: UserSearchService) {}
+
   search(username: string): void {
     this.service.search(username)
     .subscribe(
       (user) => {
         console.log(user);
-        this.user = user
+        this.user = user;
       },
       (error) => {
         console.log(error);
         this.error = error;
       }
-    )
+    );
   }
 
 }

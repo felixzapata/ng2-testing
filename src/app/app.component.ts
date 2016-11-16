@@ -8,16 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  user: any
+  user: any;
+  error: string;
 
-  constructor(private http:Http){}
-  
+  constructor(private http: Http) {}
+
   search(username: string): void {
+    this.user = null;
+    this.error = null;
     this.http.get(`https://api.github.com/users/${username}`)
     .subscribe(
       (response) => this.user = response.json(),
-      (error) => console.log(error)
-    )
+      (error) => this.error = error
+    );
   }
 
 }
